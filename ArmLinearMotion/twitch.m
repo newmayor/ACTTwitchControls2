@@ -1,16 +1,13 @@
-function [ x2, y2, tt1, tt2 ] = twitch( dt1, dt2 )
+function [ x2, y2, tt1, tt2 ] = twitch( dt1, dt2,atstep)
 
-    global er dt1max dt2max atstep
+    global er dt1max dt2max %atstep
     global t1min t2min t1max t2max
     global a MOTOR1 MOTOR2 MOTORMAX PIN_motor1_en PIN_motor1_pwm1 PIN_motor1_pwm2 PIN_motor2_en PIN_motor2_pwm1 PIN_motor2_pwm2 PIN_pot1 PIN_pot2
 
 	
-    % double the speed of motors
-	% I'm trying to prevent the lowspeed sections from being too slow
-    dt1 = 2*dt1;
-    dt2 = 2*dt2;
     
-
+speedDiv=2*pi;
+% This is the starting info of the arm
 [t1, t2, x2, y2 ,x1, y1] = GetArmInfo();
 
 
@@ -50,19 +47,22 @@ end
 
 
 if(er < 1)    
-    DriveMotor(MOTOR1,-1*dt1)
-    DriveMotor(MOTOR2,-1*dt2)
-    % Determines where the next angle should be
-    t1 = t1 + dt1*atstep;
-    t2 = t2 + dt2*atstep;
-    
-    lx = [0,x1,x2];
+    DriveMotor(MOTOR1,dt1/speedDiv)
+    DriveMotor(MOTOR2,dt2/speedDiv)
+	
+    % Determines where the next angle should be, given atstep is 
+	% the time between motor driving and reading 
+    %tt1 = t1 + dt1*atstep;
+    %tt2 = t2 + dt2*atstep;
+	
+	lx = [0,x1,x2];
     ly = [0,y1,y2];
     plot(x1,y1,'O',x2,y2,'O',0,0,'O',lx,ly);
     axis([-24 24 -24 24]);
     axis('square');
     set(gcf,'color','w');
     grid on;
+
 else
     DriveMotor(MOTOR1,0)
     DriveMotor(MOTOR2,0)

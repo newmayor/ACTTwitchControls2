@@ -7,6 +7,7 @@ close all;
     global t1min t2min t1max t2max
     global MOTOR1 MOTOR2
     
+%% Set Constants and Limits
 % Initialize boundries of the arm
 % 100 degrees to the left and right of the perpendicular from horizontal 
 t1min = -100*pi/180;
@@ -28,39 +29,57 @@ adstep = .1;
 er = 0;        % error check, if == 1 then there is something wrong
 f = 1;   %counter and index for the number of times arm_bebe function was acessed
 
+%% Connect with microcontroller
 % Starts the connection with arduino and initializes the pinouts
-initTwitch()
+% % % % % initTwitch()
 
+
+%% Go to default position
+% or go to starting position (To be implemented later)
 % Reset to default position
 disp('Setting arm to the default position')
-CenterArm()
+% % % % % CenterArm()
 
+
+
+%% Read in target destination
 % initialize final cartesian position
 x2f  = input('Input the target X coordinate: ');
 y2f = input('Input the target Y coordinate: ');
 
 
 
+%% Convert Cartesian Coordinates to polar
+%% Problem 1 
+% There is no var x_f and y_f so I'm temporarily assigning x_f and y_f  to 
+% x2f and y2f to alleve the error
+x_f = x2f;
+y_f = y2f;
+%%
+
+% Final destination
+% convert x_f, y_f to r_f, theta_f
+r_f = sqrt(x_f^2 + y_f^2);
+theta_f = atan(y_f/x_f);
+
+% Calculate current positions in radians 
+% Current position r_i, theta_i
+%[theta1,theta2,x2i,y2i,x1i,y1i] = GetArmInfo()
+%%%theta1 = theta1 * pi / 180;
+%%%theta2 = theta2 * pi / 180;
+theta1 = 90 * pi / 180;
+theta2 = 0 * pi / 180;
+[r_i,theta_i] = position(theta1,theta2)
 
 
-
-% convert x_f, y2f to r_f, theta_f
-r_f = sqrt(x2f^2 + y2f^2);
-theta_f = atan(y2f/x2f);
-
-% current position r_i, theta_i
-[theta1,theta2,x2i,y2i,x1i,y1i] = GetArmInfo(); 
-theta1 = theta1 / pi * 180;
-theta2 = theta2 / pi * 180;
-[r_i,theta_i] = position(theta1,theta2);
-[s1,s2] = speeds(r_i,r_f,theta_i,theta_f,L1,L2);
+[s1,s2] = speeds(r_i,r_f,theta_i,theta_f,L1,L2)
 
 % s1max, s2max are given (measured in rad/s)
 ratio1 = s1max / s1; % d(theta)/dt using theta1
 ratio2 = s2max / s2; % d(theta)/dt using theta2
 
 % use the smaller ratio
-if rario1 < ratio2
+if ratio1 < ratio2
 max = ratio1;
 else
 max = ratio2;
@@ -80,7 +99,7 @@ while theta_i ~= theta_f
     ratio2 = s2_max / s2; % d(theta)/dt using theta2
     
     % use the smaller ratio
-    if rario1 < ratio2
+    if ratio1 < ratio2
         max = ratio1;
     else
         max = ratio2;

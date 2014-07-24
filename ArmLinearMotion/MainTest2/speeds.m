@@ -1,3 +1,10 @@
+%% Determines the necessary speeds of motors 1 and 2
+% r_i: radius initial
+% r_f: radius final
+% theta_i: theta initial
+% theta_f: theta final
+% L1: length of upper arm
+% L2: length of lower arm
 function [s1,s2] = speeds(r_i,r_f,theta_i,theta_f,L1,L2)
 
 % convert r's and theta's to Cartesian coordinates

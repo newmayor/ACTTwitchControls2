@@ -40,8 +40,18 @@ CenterArm()
 x2f  = input('Input the target X coordinate: ');
 y2f = input('Input the target Y coordinate: ');
 
+r_f = sqrt(x2f^2 + y2f^2);
+theta_f = atan(y2f/x2f);
 
+tic();
 [t1old, t2old, x2i, y2i] = GetArmInfo();
+theta1 = t1old * pi / 180;
+theta2 = t2old * pi / 180;
+
+[r_i,theta_i] = position(theta1,theta2)
+
+
+[s1,s2] = speeds(r_i,r_f,theta_i,theta_f,L1,L2)
 
 
 % distance from current position to final position
@@ -71,38 +81,29 @@ line([x2i x2f],[y2i y2f])
 % Record the points traversed
 X(f) = x2i;
 Y(f) = y2i;
-i = 1;
+ddt1=1;
+ddt2=1;
 while(dist >= 1.0)
-    tic()
-    [x2old, y2old,t1old,t2old] = twitch(dt1,dt2);
-    time = toc;
-    f = f+1;
-    X(f) = x2old;
-    Y(f) = y2old;
-        
-    dist = sqrt((y2f - y2old)^2 + (x2f - x2old)^2);
-    ty = (y2f - y2old)/dist;
-    tx = (x2f - x2old)/dist;
-    y2new = (adstep*f)*(ty)+y2i;
-    x2new = (adstep*f)*(tx)+x2i;
-        
-    r = sqrt(x2new^2 + y2new^2);
-    theta = acos(x2new/r);
-    t2new = pi - acos((r^2 - L1^2 - L2^2)/(-2*L1*L2));
-    tin = acos((L2^2 - r^2 - L1^2)/(-2*L1*r));
-    t1new = (pi/2 - theta) - tin;    
+	tic();
+    [x2old, y2old,t1old,t2old] = twitch(s1*(1+s1dif),s2*(1+s2dif),time);
+	time=toc();
+	[t1new, t2new, x2new, y2new] = GetArmInfo();
+	s1actual=(t1old-t1new)/time;
+	s2actual=(t2old-t2new)/time;
+	
+	s1dif=(s1actual-s1)/s1actual;
+	s2dif=(s2actual-s2)/s2actual;
+	
+	[t1old, t2old, x2i, y2i] = GetArmInfo();
+	theta1 = t1old * pi / 180;
+	theta2 = t2old * pi / 180;
 
-    %fprintf('t1new: %2.2f  t1old: %2.2f\n',t1new,t1old)
-    %fprintf('t2new: %2.2f  t2old: %2.2f\n',t2new,t2old)
-            
-    dt1 =(t1new - t1old)%/time;% - X(f-1);    %velocity of motors
-    dt2 =(t2new - t2old)%/time;% - Y(f-1);  
-    angSpeeds(i, 1) = dt1;
-    angSpeeds(i, 2) = dt2;
-    i = i+1;
+	[r_i,theta_i] = position(theta1,theta2)
 
-	%fprintf('tt1: %2.2f  tt2: %2.2f\n',tt1,tt2);
-    %fprintf('dt1: %2.2f  dt2: %2.2f\n',dt1,dt2)
+
+	[s1,s2] = speeds(r_i,r_f,theta_i,theta_f,L1,L2)
+
+
 end
 
 disp('done');
