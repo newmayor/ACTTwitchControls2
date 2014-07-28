@@ -6,9 +6,8 @@ function [ x2, y2, tt1, tt2 ] = twitch( dt1, dt2,atstep)
 
 	
     
-speedDiv=2*pi;
 % This is the starting info of the arm
-[t1, t2, x2, y2 ,x1, y1] = GetArmInfo();
+[tt1, tt2, x2, y2 ,x1, y1] = GetArmInfo();
 
 
 if(abs(dt1max) < abs(dt1))    
@@ -31,7 +30,6 @@ end
 
 
 
-
 % if statements to make sure that the motor arm positions are within range
 %modify the limits to 
 if((t1 < t1min) && (dt1 < 0))
@@ -47,30 +45,16 @@ end
 
 
 if(er < 1)    
-    DriveMotor(MOTOR1,dt1/speedDiv)
-    DriveMotor(MOTOR2,dt2/speedDiv)
+    DriveMotor(MOTOR1,dt1/dt1max)
+    DriveMotor(MOTOR2,dt2/dt2max)
 	
-    % Determines where the next angle should be, given atstep is 
-	% the time between motor driving and reading 
-    %tt1 = t1 + dt1*atstep;
-    %tt2 = t2 + dt2*atstep;
-	
-	lx = [0,x1,x2];
-    ly = [0,y1,y2];
-    plot(x1,y1,'O',x2,y2,'O',0,0,'O',lx,ly);
-    axis([-24 24 -24 24]);
-    axis('square');
-    set(gcf,'color','w');
-    grid on;
-
+	plotArm();
 else
     DriveMotor(MOTOR1,0)
     DriveMotor(MOTOR2,0)
     error('There is a bounds error')
 end
 
-tt1 = t1; %this will be used when the actual arm is working (ignore for now)
-tt2 = t2;  %this will be used when the actual arm is working (ignore for now)
 
 pause(0.003);  %this pause enables animation to happen
 
