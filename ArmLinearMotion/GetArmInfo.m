@@ -17,8 +17,6 @@ t2max = 890;
     t1=((a.analogRead(PIN_pot0)-t1min)/(t1max-t1min)*180-90)*pi/180;
     t2=((a.analogRead(PIN_pot1)-t2min)/(t2max-t2min)*180-90)*pi/180;
     
-%     L1 = 9.0;   % Length of base arm (inches)
-%     L2 = 14.75;  % length of outer arm (inches)
     x1 = L1*sin(t1);
     y1 = L1*cos(t1);
 
@@ -29,7 +27,6 @@ t2max = 890;
     
     r = sqrt(x2*x2+y2*y2);%(L1^2 + L2^2 + 2 * L1 * L2 * cos(t2))^(1/2);
     theta=t1+.5*pi-acos((L1*L1+r*r-L2*L2)/(2*L1*r));
-    %theta = (t1 - asin((L2 * sin(t2)) / r))+.5*pi
     
     plot(x1,y1,'O',x2,y2,'O',0,0,'O',lx,ly);
     axis([-24 24 -24 24]);

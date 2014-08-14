@@ -36,9 +36,10 @@ f = 1;   	%counter and index for the number of tidmes arm_bebe function was aces
 initTwitch()
 
 
+
 %% Reset to default position
 disp('Setting arm to the default position')
-CenterArm()
+% CenterArm()
 
 
 %% Prompt User for Final Cartesian Position
@@ -64,7 +65,7 @@ theta2 = t2old;% * pi / 180;
 s1=angle(s1)
 s2=angle(s2)
 
-
+f= 1;
 % Record the points traversed
 X(f) = x2i;
 Y(f) = y2i;
@@ -77,18 +78,10 @@ s1dif=s1;
 s2dif=s2;
 spdarr1(1)=s1;
 spdarr2(1)=s2;
+[t1new, t2new, x2new, y2new] = GetArmInfo();
+
 while(distance  >= 1.0)
-	time=toc();
-    [x2old, y2old,t1old,t2old] = twitch(s1dif,s2dif,time);
-	tic();
-	[t1new, t2new, x2new, y2new] = GetArmInfo();
-	
-	X(f) = x2old;
-	Y(f) = y2old;
-	f=f+1
-	% Actual speeds of the motors
-	s1actual=(t1old-t1new)/time;
-	s2actual=(t2old-t2new)/time;
+    %% Calculate Error
 	
 	
 	s1dif=s1;%+(s1actual-s1)*P_CONST;%/s1actual;
@@ -103,8 +96,16 @@ while(distance  >= 1.0)
 	[s1,s2] = speeds(r_i,r_f,theta_i,theta_f);
     s1=angle(s1)/10
     s2=angle(s2)/10
-spdarr1(f)=s1;
-spdarr2(f)=s2;
+    
+    [x2old, y2old,t1old,t2old] = twitch(s1dif,s2dif);
+	[t1new, t2new, x2new, y2new] = GetArmInfo();
+	
+	X(f) = x2old;
+	Y(f) = y2old;
+	f=f+1
+    
+    spdarr1(f)=s1;
+    spdarr2(f)=s2;
 	
 	distance = sqrt((y2f - y2old)^2 + (x2f - x2old)^2)
 	
@@ -113,7 +114,7 @@ spdarr2(f)=s2;
     DriveMotor(MOTOR1,0);
     DriveMotor(MOTOR2,0);
     input('enter something to continue');
-    
+
 end
 
 disp('done');
