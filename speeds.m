@@ -11,7 +11,7 @@ dx = x_f - x_i;
 dy = y_f - y_i;
 
 m = dy/dx; % slope of linear motion line
-c = r_i * sin(theta_i) - m * r_i * cos(theta_i); % y=intercept of linear motion line
+c = r_i * sin(theta_i) - m * r_i * cos(theta_i); % y-intercept of linear motion line
 
 syms t;
 
