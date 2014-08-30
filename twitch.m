@@ -1,66 +1,59 @@
 function twitch(s1,s2)
 
-global er s1max s2max atstep
-global t1min t2min t1max t2max
-global a MOTOR1 MOTOR2 MOTORMAX PIN_motor1_en PIN_motor1_pwm1 PIN_motor1_pwm2 PIN_motor2_en PIN_motor2_pwm1 PIN_motor2_pwm2 PIN_pot1 PIN_pot2
-
-% s1 = 2*s1;
-% s2 = 2*s2;
+global er s1_max s2_max
+global theta1_min theta2_min theta1_max theta2_max
+global MOTOR1 MOTOR2
     
-[t1,t2,x2,y2,x1,y1] = GetArmInfo();
+[theta1,theta2,theta3,x_tip,y_tip,x_in,y_in] = GetArmInfo();
 
-if(abs(s1max) < abs(s1))    
+if(abs(s1_max) < abs(s1))    
 % Check to make sure speed limit is not exceeded
     if(s1 < 0)
-        s1 = -s1max;
+        s1 = -s1_max;
     else
-        s1 = s1max;
+        s1 = s1_max;
     end
 end
 
-if(abs(s2max) < abs(s2))    
+if(abs(s2_max) < abs(s2))    
 % Check to make sure speed limit is not exceeded
     if(s2 < 0)
-        s2 = -s2max;
+        s2 = -s2_max;
     else
-        s2 = s2max;
+        s2 = s2_max;
     end
 end
 
 % Make sure that the motor arm positions are within range
-if((t1 < t1min) && (s1 < 0))
-    % fprintf('t1: %2.2f t1min: %2.2f s1: %2.2f\n',t1,t1min,s1)
-    er = 1
-elseif((t1 > t1max) && (s1 > 0))
-    er = 2
-elseif((t2 > t2max) && (s2 > 0))
-    er = 3
-elseif((t2 < t2min) && (s2 < 0))
-    er = 4
+if (theta1 < theta1_min) && (s1 < 0)
+    er = 1; 
+elseif (theta1 > theta1_max) && (s1 > 0)
+    er = 2; 
+elseif ((theta2 - theta3) > theta2_max) && (s2 > 0)
+    er = 3;
+elseif ((theta2 - theta3) < theta2_min) && (s2 < 0) 
+    er = 4;
 end
 
-if(er < 1)    
+if er == 0   
     DriveMotor(MOTOR1,-1 * s1)
     DriveMotor(MOTOR2,-1 * s2)
     
-    % Determines where the next angle should be
-    t1 = t1 + s1*atstep;
-    t2 = t2 + s2*atstep;
-    
-    lx = [0,x1,x2];
-    ly = [0,y1,y2];
-    plot(x1,y1,'O',x2,y2,'O',0,0,'O',lx,ly);
-    axis([-24 24 -24 24]);
+    lx = [0,x_in,x_tip];
+    ly = [0,y_in,y_tip];
+    plot(x_in,y_in,'O',x_tip,y_tip,'O',0,0,'O',lx,ly);
+    axis([-30 30 -30 30]);
     axis('square');
     set(gcf,'color','w');
     grid on;
 else
+    fprintf('theta1: %d, theta1_min: %d, theta1_max: %d\n',theta1,theta1_min,theta1_max);
+    fprintf('theta2 - theta3: %d, theta2_min: %d, theta2_max: %d\n',theta2 - theta3,theta2_min,theta2_max);
+    fprintf('s1: %d, s2: %d\n',s1,s2);
+    
     DriveMotor(MOTOR1,0)
     DriveMotor(MOTOR2,0)
-    error('There is a bounds error')
+    error('BOUNDS ERROR');
 end
-
-tt1 = t1; % this will be used when the actual arm is working (ignore for now)
-tt2 = t2;  % this will be used when the actual arm is working (ignore for now)
 
 pause(0.003);  % this pause enables animation to happen
