@@ -188,8 +188,8 @@ a.servoAttach, a.servoStatus, a.servoWrite, a.servoRead, and a.servoDetach
 to respectively attach a servo to a PWM pin, get its status (attached/detached)
 move it to a certain angle, and read its position.
 
-NOTE that since August 2012 (ver 3.8) the servos are no longer referred by
-the numbers 1 and 2 but instead by the PWM pin number to which they are 
+NOTE that since August 2012 (ver 3.8) the servos are no longer referred to 
+by the numbers 1 and 2 but instead by the PWM pin number to which they are 
 attached (e.g. a.servoRead(9) reads the servo attached to pin #9).
 
 For encoders you can use the commands a.encoderAttach, a.encoderStatus, 
@@ -451,6 +451,53 @@ seconds if the number of required steps is high).
 
 ---------------------------------------------------------------------------
 
+USING THE ARDUINO STEPPER MOTOR LIBRARY (Stepper.h)
+
+You can modify the adafruit sketch to work with the official arduino 
+stepper library Stepper.h, (more info this library can be found here:
+http://arduino.cc/en/Reference/Stepper?from=Tutorial.Stepper).
+
+Starting from AFMotor_v1.pde, you need to modify the following lines:
+
+line 61: replace "#include <AFMotor.h>" with "#include <Stepper.h>"
+
+lines 77: replace "AF_Stepper stm1(200, 1);" with
+"Stepper stm1(200, 8,9,10,11);" assuming that you want to connect the first 
+stepper to pins 8,9,10,11 (of course you can chose the pins you want).
+
+lines 78: replace "AF_Stepper stm2(200, 1);" with
+"Stepper stm2(200, 3,4,5,6);" assuming that you want to connect the second
+stepper to pins 8,9,10,11 (again, you can chose the pins you want).
+If you don't have a second stepper, you can either use unused pin numbers
+or use the same pins as the ones used in line 77.
+
+delete the code on lines 79 to 82 (defining DC motor objects)
+
+delete the code on lines 374 (case 170:) to 440 (break; /* s=181 ... */)
+
+lines 489 and 494: replace FORWARD with 1 and BACKWARD with -1
+
+delete code on lines 499 and 500 (calling stm1.release and stm2.release)
+
+delete code on lines 518, 523, 528, and 533 (setting style to SINGLE, 
+DOUBLE, INTERLEAVE, and MICROSTEP)
+
+line 547: replace stm1.step(val,dir,sty); with stm1.step(val*dir);
+
+line 548: replace stm2.step(val,dir,sty); with stm2.step(val*dir);
+
+You can now save the file (needs to be in a separate folder having the same
+name as the file), open it with the IDE, and upload it on the Arduino.
+
+This will be recognized by matlab as the afmotor_v1 sketch, and you will be
+able to use the main stepper instructions (note however that the style 
+parameter, while required, is ignored by the sketch).
+
+Thanks to Gianmarco Errico for his initial inputs and to Luca DalBosco for
+testing the resulting final sketch.
+
+---------------------------------------------------------------------------
+
 SIMULINK LIBRARY
 
 Since version 3.0 this package also comes with a Simulink library that
@@ -565,7 +612,7 @@ hardware or operating system level, or whether it originates in MATLAB.
 The easier way of doing this is using the IDE Serial Monitor (in the upper 
 right corner of the IDE) to send messages and receive results. Once you
 start the serial monitor and select 115200 as baud rate, you can you type 
-messages in the upper row and send them via serial port clicking the Send 
+messages in the upper row and send them via serial port clicking the "Send"
 button. 
 
 A serial message to adioes.pde is typically made up by no more than 3 parts:
@@ -649,7 +696,7 @@ CUSTOMIZATION:
 
 For people wanting to customize the package or simply add their own code
 to do stuff, it is suggested to start from the roundTrip function mentioned
-above, which is specifically provided as an example for this purposes.
+above, which is specifically provided as an example for this purpose.
 The section handling this dummy function in the pde file is located starting
 from "case 400:", one might take the parameter, perform some potentially 
 useful operation, and then send any result back via serial connection.
@@ -662,4 +709,4 @@ See contents.m for details on files and version history.
 
 ---------------------------------------------------------------------------
 
-Giampiero Campa, August 2013, Copyright 2013 The MathWorks, Inc.
+Giampiero Campa, June 2014, Copyright 2014, The MathWorks, Inc.

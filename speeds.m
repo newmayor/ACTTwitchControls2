@@ -1,12 +1,7 @@
-function [s1,s2] = speeds(r_i,r_f,theta_i,theta_f)
+function [s1,s2] = speeds(x_i,y_i,r_i,theta_i)
 
+global r_f theta_f x_f y_f
 global L1 L2
-
-% convert r's and theta's to Cartesian coordinates
-x_i = r_i * cos(theta_i);
-x_f = r_f * cos(theta_f);
-y_i = r_i * sin(theta_i);
-y_f = r_f * sin(theta_f);
 
 % differences in x- and y-positions
 dx = x_f - x_i;
@@ -14,9 +9,6 @@ dy = y_f - y_i;
 
 m = dy/dx; % slope of linear motion line
 c = r_i * sin(theta_i) - m * r_i * cos(theta_i); % y-intercept of linear motion line
-
-fprintf('\nr_i: %d, theta_i: %d, r_f: %d, theta_f: %d\n',r_i,theta_i,r_f,theta_f); 
-fprintf('x_i: %d, y_i: %d, x_f: %d, y_f: %d\n',x_i,y_i,x_f,y_f); 
 fprintf('dx: %d, dy: %d, m: %d, c: %d\n',dx,dy,m,c);
 
 syms t;

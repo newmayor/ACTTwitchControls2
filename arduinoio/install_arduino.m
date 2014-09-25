@@ -11,8 +11,8 @@ if length(wa) < 1,
     error(msg);
 end
 if length(wa) > 1,
-    msg=' There is at least another arduino.m file in the path, please delete any other versions before installing this one';
-    error(msg);
+    msg=' There is at least another arduino.m file in the path, the installation will go on but it is strongly suggested to delete any other version before using this one';
+    warning(msg);
 end
 
 % get the main arduino folder

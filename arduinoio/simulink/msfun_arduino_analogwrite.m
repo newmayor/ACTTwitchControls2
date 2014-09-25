@@ -1,10 +1,5 @@
 function msfun_arduino_analogwrite(block)
-% Help for Writing Level-2 M-File S-Functions:
-%   web([docroot '/toolbox/simulink/sfg/f7-67622.html']
-%   http://www.mathworks.com/access/helpdesk/help/toolbox/simulink/sfg/f7-67622.html
-%
-
-    %   Copyright 2011 The MathWorks, Inc.
+% Level-2 M-File S-Functions, Copyright 2014, The MathWorks, Inc.
 
 % instance variables 
 myArduino = [];
@@ -53,7 +48,9 @@ setup(block)
     function CheckPrms(block)        
         try
             validateattributes(block.DialogPrm(1).Data, {'char'}, {'nonempty'});  % Name of arduino instance
-            validateattributes(str2double(block.DialogPrm(2).Data), {'numeric'}, {'real', 'scalar', 'nonnegative'}); % pin
+            validateattributes(block.DialogPrm(2).Data, {'numeric'}, {'real', 'scalar', 'nonnegative'}); % pin
+            errstr=arduino.checknum(block.DialogPrm(2).Data,'pwm pin number',[2:13 44:46]);
+            if ~isempty(errstr), disp(errstr); error(errstr); end
             validateattributes(block.DialogPrm(3).Data, {'numeric'}, {'real', 'scalar', 'nonzero'}); % sample time
         catch %#ok<CTCH>
             error('Simulink:ArduinoIO:invalidParameter', 'Invalid value for a mask parameter');
@@ -72,7 +69,7 @@ setup(block)
         % fprintf('%s: InitConditions\n', getfullname(block.BlockHandle));
         customData = getSetupBlockUserData(bdroot(block.BlockHandle), block.DialogPrm(1).Data);
         myArduino = customData('arduinoHandle');
-        myPin = str2double(block.DialogPrm(2).Data);
+        myPin = block.DialogPrm(2).Data;
         myArduino.pinMode(myPin, 'output');
     end
 

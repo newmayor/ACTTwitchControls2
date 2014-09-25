@@ -4,7 +4,7 @@ global er s1_max s2_max
 global theta1_min theta2_min theta1_max theta2_max
 global MOTOR1 MOTOR2
     
-[theta1,theta2,theta3,x_tip,y_tip,x_in,y_in] = GetArmInfo();
+[~,~,theta1,theta2,theta3,x_tip,y_tip,x_in,y_in] = GetArmInfo();
 
 if(abs(s1_max) < abs(s1))    
 % Check to make sure speed limit is not exceeded

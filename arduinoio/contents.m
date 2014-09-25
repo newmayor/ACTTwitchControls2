@@ -1,9 +1,10 @@
 % ArduinoIO (a.k.a  "Tethered" MATLAB Support Package for Arduino)
-% Version 4.4 (R2013a), G. Campa,  30-Aug-2013
+% Version 4.5 (R2014a), G. Campa,  30-Jun-2014
 % Copyright 2013 The MathWorks, Inc.
 %
-% This is a MATLAB class that allows performing Analog/Digital Input
-% and Output with the Arduino Board from the MATLAB command line.
+% This is a MATLAB package that allows performing Analog/Digital Input
+% and Output (as well as other operations) with the Arduino Board from the 
+% MATLAB command line. A library of simulink blocks is also provided.
 % Please read the file readme.txt for more info
 %
 
@@ -67,3 +68,4 @@
 % Ver  4.2 - Aug 2012  - Encoder debouncing function added
 % Ver  4.3 - Aug 2013  - Reorganized sketch handling and examples
 % Ver  4.4 - Aug 2013  - Improved docs and added support for AFMotor Shield V2
+% Ver  4.5 - May 2014  - Minor improvements to support MEGA pins in Simulink
