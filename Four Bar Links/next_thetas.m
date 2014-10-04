@@ -10,8 +10,8 @@ global MOTOR1 MOTOR2
 L2 = 9.0;   % Length of inner arm (inches)
 L3 = 14.75;
 
-theta3_1 = atan(y/x) + acos((x^2 + y^2 + L2^2 + L3^2)/(2 * L3 * sqrt(x^2 + y^2)));
+theta3_1 = atan(y/x) + acos((x^2 + y^2 - L2^2 + L3^2)/(2 * L3 * sqrt(x^2 + y^2)));
 theta2_1 = asin((y - L3 * sin(theta3_1))/L2);
 
-theta3_2 = atan(y/x) - acos((x^2 + y^2 + L2^2 + L3^2)/(2 * L3 * sqrt(x^2 + y^2)));
+theta3_2 = atan(y/x) - acos((x^2 + y^2 - L2^2 + L3^2)/(2 * L3 * sqrt(x^2 + y^2)));
 theta2_2 = asin((y - L3 * sin(theta3_2))/L2);
