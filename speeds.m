@@ -1,3 +1,18 @@
+% Parameters: Need to input the original coordinates first in cartesian, the 
+% the x and y coordinates, and next in polar, the radius and angle of the entire
+% arm, in refrence to the global axes.
+% Returns: the evaluated derivative of theta 1 and theta 2.
+% Description: The function will pull in the desired final postion coordinates
+% and the lengths of the upper arm and forearm. Next the function calculates the
+% diffrence between the current position and desired position. The slope of the 
+% linear motion line is found along with the y-intercept. Theta 1, the angle between
+% the axes and the upper arm, and theta 2, the angle between the upper arm and the
+% forearm, are expressed in terms of the angle the entire arm makes with the 
+% axes, variable t in the code. The derivatives of theta 1 and theta 2 
+% are found with respect to t. The derivatives of theta 1 and theta 2 are 
+% evaluated by replacing the starting theta for the whole arm
+% into the derivative equations for theta 1 and theta 2.
+
 function [s1,s2] = speeds(x_i,y_i,r_i,theta_i)
 
 global r_f theta_f x_f y_f
