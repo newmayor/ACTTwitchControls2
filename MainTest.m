@@ -1,3 +1,26 @@
+% Parameters:Prompted parameters only- final cartesian coordinates for 
+%desired position are asked to be input by the user by the script
+% Results: plot of the motion of the arm, along with movement of physical motors
+% Description:The script globalizes variables for the final position of the arm in both 
+% cartesian and polar form along with the error check (er), the lengths of the 
+% forearm and upper arm (L1 & L2), the boundary vaiables of the system (the theta variables),
+% the max duty for theta 1 and theta 2 (s1_max & s2_max variables), the step size (atstep), 
+% and motor varibles. Next the boundaries are set along with the forearm and 
+% upper arm details and the step size. Other globalized variables are given values.
+% The error check is initialized along with a counter to see how many times the armbebe
+% function is accessed. The connection with the arduino begins. The arm is 
+% then reset to the default position. The final cartesian position is then asked from
+% the user. The script proceeds to change the cartesian position inputed by the
+% user into a polar posiition. The current position is attained and reported to the user.
+% The angular velocities of theta 1 and theta 2 are attained and the slowest 
+% angular velocity is used to drive the motors and displayed to the user. The straight
+% line path of the tip of the arm is then ploted and displayed to the user. Once more
+% the current location is attained. The function will loop until the desired 
+% final angle of the total arm is reached. Once the desired theta is reached
+% "done" is displayed to the user, the motors are turned off, and a plot 
+% displaying the motion of the arm is available for the user to see.
+
+
 % Setup
 clear all;
 clc
