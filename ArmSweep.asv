@@ -1,12 +1,9 @@
-% Parameters:None Required.
-% Results: The arm sweeps its range of motion then returns to the 90 degree
-% mark.
-% Description: Global variables declared. Function DriveMotor()is called to 
-% initialize the arms position. The pots are adjusted by the arduino and 
-% printed out for the user. The arm sweeps the range of motion. The motor is
-% run once more to go to the 90 degree position by calling the function DriveMotor().
-% The pot statuses are changed again, the arm moves, and the pot readings are
-% displayed to the user again.
+Parameters:None Required.
+Results:
+Description: Global variables declared. Function DriveMotor()is called to 
+initialize the arms position. The pots are adjusted by the arduino and 
+printed out for the user. The arm sweeps the range of motion. The motor is
+run once more to go to the 90 degree position by calling the function DriveMotor()
 
 
 function ArmSweep()

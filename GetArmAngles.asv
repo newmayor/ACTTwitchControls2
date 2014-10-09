@@ -1,9 +1,8 @@
-% Parameters:None required.
-% Results: a graph for the tip of the arm's movement.
-% Description: Globalizes variables for the motor inputs and pin outs for the
-% pot and motors along with the lengths of the upper arm and forearm and 
-% the angle boundries. The boundaries are set for the angles. The angles are read 
-% in from the arduino. A plot is generated for the path of the tip of the arm.
+Parameters:None required.
+Results:
+Description: Globalizes variables for the motor inputs and pin outs for the
+pot and motors along with the lengths of the upper arm and forearm lengths and 
+the angle boundries. the boundaries are set for the angles. 
 
 function [theta1,theta2,x2,y2] = GetArmAngles()  
 global a MOTOR1 MOTOR2 MOTORMAX PIN_motor1_en PIN_motor1_pwm1 PIN_motor1_pwm2 PIN_motor2_en PIN_motor2_pwm1 PIN_motor2_pwm2 PIN_pot1 PIN_pot2

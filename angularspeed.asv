@@ -1,10 +1,10 @@
-% Parameters: Starting angles for the upper arm and forearm.
-% Results:
-% Description:The function calls the position function to get the polar coordinates
-% of the tip of the arm. The speeds function is called to get the derivatives 
-% of the angles theta1 and theta 2 with respect to the angle of the entire arm. 
-% Th smallest ratio is determined for the angular speed. The final position is
-% determined in polar form for the arm.
+Parameters: Starting angles for the upper arm and forearm.
+Results:
+Description:The function calls the position function to get the polar coordinates
+of the tip of the arm. The speeds function is called to get the derivatives 
+of the angles theta1 and theta 2 with respect to the angle of the entire arm. 
+Th smallest ratio is determined for the angular speed. The final position is
+determined in polar 
 
 
 function s = angularspeed(theta1_i,theta2_i)

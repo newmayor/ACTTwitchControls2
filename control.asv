@@ -1,11 +1,9 @@
-% Parameters:initital and final polar coordinates of the tip of the arm.
-% Results:
-% Descritpion: Function declares the lengths of the inner and outer arm. The 
-% angular velocity of the angle created by the x- axis and the inner arm and 
-% the angle created by the inner and outer arm are found after calling the speeds 
-% function. The smaller angular velocity is selected then the speed is sent to the
-% motor to be driven at the slowest angular velocity possible. The position function
-% is called to find the polar coordinates of the tip of the arm.
+Parameters:initital and final polar coordinates of the tip of the arm.
+Results:
+Descritpion: Function declares the lengths of the inner and outer arm. The 
+angular velocity of the angle created by the x- axis and the inner arm and 
+the angle created by the inner and outer arm are found afer calling the speeds 
+function. T
 
 function control(r_i,r_f,theta_i,theta_f)
 
