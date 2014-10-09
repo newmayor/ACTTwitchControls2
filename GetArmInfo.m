@@ -1,7 +1,18 @@
+% Parameters:None required.
+% Results: Returns the angles, made by the upper arm and the global axes (theta1) and the
+% upper arm and forearm (theta2), in radians, and cartesian coordinates of the arm's tip.
+% Description: The function globalizes the final cartesian and polar coordinates
+% for the arm along with the length of the upper arm and forearm. The limits are
+% set for theta1 and theta2. theta1 is read from the -x axis and theta2 is read from
+% the +x axis. Thetas are checked to see if its in the correct orientation. The 
+% inner angle of the arm is also calculated. Vlaues forthe tip of the arm 
+%are displayed in both cartesian and polar coordinates and a plot
+% of the path of the arm full is created and displayed for the user.
+
 function [r,theta,theta1,theta2,theta3,x_tip,y_tip,x_in,y_in] = GetArmInfo()  
 % This function returns the angles (in radians) and cartesian coordinates of the arm
 
-global r_f theta_f x_f y_f
+global r_f theta_f x_f y_f 
 global a PIN_pot1 PIN_pot2
 global  L1 L2 
 
