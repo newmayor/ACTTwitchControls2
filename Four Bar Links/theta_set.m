@@ -6,16 +6,23 @@
 %and 0 if it isn't. Where the first column represents the first theta set &
 %the second column represets the second theta set.
 %Description:function checks to see which orientations are viable if any.
+
 function [theta1,theta2] = theta_set(thetas)
 if thetas(:,1) == 1;
     theta1 = 1;
-else
-    theta1 = 0;
+elseif thetas(:,1) == 0
+     theta1 = 0;   
+elseif thetas(:,1)~= 1 || thetas(:,1)~= 0
+        error('theta_set:Orientation','Orientation Array Error');
 end
+ 
 if thetas(:,2) == 1;
     theta2 = 1; 
-else
-    theta2 = 0;
+elseif thetas(:,2) == 0
+     theta1 = 0;   
+elseif thetas(:,2)~= 1 || thetas(:,2)~= 0
+        error('theta_set:Orientation','Orientation Array Error');
+end
 end
 
     
