@@ -12,10 +12,10 @@ er_orient = zeros(steps - 1, 2);
 x_curr = x_i; y_curr = y_i; 
 for i = 1:(steps - 1)
     [x_curr,y_curr] = next_xy(x_curr,y_curr,ep);
-    [er_orient(i,1),er_orient(i,2)] = anglebounds(x_curr,y_curr);
+    [er_ori(i,1),er_ori(i,2)] = anglebounds(x_curr,y_curr);
 end
 
-if isequal(er_orient(:,1),0) || isequal(er_orient(:,2),0)
+if isequal(er_ori(:,1),0) || isequal(er_ori(:,2),0)
     er = 0;
 else
     er = 1;
