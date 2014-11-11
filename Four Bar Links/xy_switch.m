@@ -15,45 +15,24 @@ r = sqrt(x^2 + (m * x + b)^2);
 x_s = vpa(solve(r == (L2 + L3),x));
 y_s = vpa(m * x_s + b); 
 
-%[theta2,theta3,gamma] = thetas();
-theta2 = 3 * pi/4; 
-theta3 = pi/4; 
-
-if theta3 < (pi/2)
-    angle = 1; 
-    theta_btw = theta3 + (pi - theta2);
-else % If theta2 > pi/2.
-    angle = -1; 
-    theta_btw = pi - theta3;
-    theta_btw = theta2 + theta_btw;
-end
-
-fprintf('theta_btw: %f\n', theta_btw);
-r = sqrt(L2^2 + L3^2 - 2 * L2 * L3 * cos(theta_btw)); 
-fprintf('r: %f\n', r);
-
-if angle > 0
-    theta = theta2 - asin(sin(theta_btw) * L3 / r); 
-else
-    theta = theta2 + asin(sin(theta_btw) * L3 / r); % asin boundaries. 
-end
-
-fprintf('theta: %f\n', theta);
-
+[r,theta] = polar_position();
+% r is leaning towards +x axis. 
 if theta < (pi/2)
     x_s = x_s(x_s > 0);
 end
+% r is leaning towards -x axis.
 if theta > (pi/2)
     x_s = x_s(x_s < 0); 
 end
 y_s = y_s(y_s > 0); 
+% r is straight up. 
 if theta == (pi/2)
     x_s = 0;
+    % Arm is straight up.
     if r == L2 + L3
         y_s = r; 
+    % Arm is bent.
     else
         y_s = y_s(y_s > 0); 
     end
 end
-
-disp(x_s); disp(y_s); 
