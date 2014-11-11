@@ -1,13 +1,13 @@
-% Parameters:an n by 2 matrix of ones and zeros that represent whether an
+function [ori1,ori2] = check_ori(er_ori)
+
+% Input: an n by 2 matrix of ones and zeros that represent whether an
 % angle is in or out of bounds. The first column represents the first path
 % angle options and the second column holds the angle options for the second
 % possible orientation.
-% Results: a matrix with the value 1 if the theta set orientation is vaiable
+% Output: a matrix with the value 1 if the theta set orientation is vaiable
 % and 0 if it isn't. Where the first column represents the first theta set &
 % the second column represets the second theta set.
-% Description:function checks to see which orientations are viable if any.
-
-function [ori1,ori2] = check_ori(er_ori)
+% Description: function checks to see which orientations are viable, if any.
 
 if er_ori(:,1) == 1;
     ori1 = 1;

@@ -1,6 +1,7 @@
-function determine_ori()
-%UNTITLED2 Summary of this function goes here
-%   Detailed explanation goes here
+determine_ori()
+% Description: to check for the shortest displacement of initial and final 
+% thetas, to determine best arm orientation in the event that both angle 
+% pairs are valid. 
 
 global L2 L3 theta1 theta4 x_i y_i x_f y_f 
 global er_ori curr_ori target_ori
