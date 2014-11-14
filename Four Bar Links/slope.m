@@ -1,3 +1,11 @@
-function [slope] = slope (x_i, y_i, x_f ,y_f)
-slope= (y_f-y_i)/(x_f-x_i)
-end
+%returns the slope between the current position and desired position. Draws
+%info from the changing global variables. 
+
+function m = slope()
+
+global L2 L3 theta1 theta4 x_i y_i x_f y_f
+global er_ori curr_ori target_ori
+global theta2_min theta3_min theta2_max theta3_max s2_max s3_max
+global MOTOR1 MOTOR2
+
+m = (y_f - y_i)/(x_f - x_i);
