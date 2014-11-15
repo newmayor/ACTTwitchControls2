@@ -10,7 +10,7 @@ global theta2_min theta3_min theta2_max theta3_max s2_max s3_max
 global MOTOR1 MOTOR2
 
 % DETERMINE CURR_ORI
-[ori1,ori2] = check_ori(er_ori);
+[ori1,ori2] = check_ori();
 if ori1 == ori2
     if ori1 == 1 && ori2 == 1
         determine_ori();

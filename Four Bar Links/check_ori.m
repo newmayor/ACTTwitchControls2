@@ -1,4 +1,4 @@
-function [ori1,ori2] = check_ori(er_ori)
+function [ori1,ori2] = check_ori()
 
 % Input: an n by 2 matrix of ones and zeros that represent whether an
 % angle is in or out of bounds. The first column represents the first path
@@ -8,6 +8,11 @@ function [ori1,ori2] = check_ori(er_ori)
 % and 0 if it isn't. Where the first column represents the first theta set &
 % the second column represets the second theta set.
 % Description: function checks to see which orientations are viable, if any.
+
+global L2 L3 theta1 theta4 x_i y_i x_f y_f 
+global er_ori curr_ori target_ori
+global theta2_min theta3_min theta2_max theta3_max s2_max s3_max
+global MOTOR1 MOTOR2
 
 if er_ori(:,1) == 1;
     ori1 = 1;
