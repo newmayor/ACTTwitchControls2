@@ -39,6 +39,7 @@ while(x~=m)
     delay(time);           % Allows motors to run for appropriate time for each step
     MotorsOFF();           % Voltage to motors ZERO
     x=x+1;
+    end
 end
 
 
