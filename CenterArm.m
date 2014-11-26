@@ -10,7 +10,7 @@ DriveMotor(1,0.5)
 pot1stat = 0;
 pot2stat = 0;
 while(~pot1stat || ~pot2stat)
-    if(a.analogRead(PIN_pot1)<500)
+    if(a.analogRead(PIN_pot1)<300)
         DriveMotor(MOTOR1,0);
         pot1stat=1;
     end
@@ -21,8 +21,8 @@ while(~pot1stat || ~pot2stat)
 end
 pot1stat = 0;
 pot2stat = 0;
-DriveMotor(0,-.5)
-DriveMotor(1,-.5)
+DriveMotor(0,-0.5)
+DriveMotor(1,-0.5)
 while(~pot1stat || ~pot2stat)
     if(a.analogRead(PIN_pot1)>700)
         DriveMotor(MOTOR1,0);
@@ -37,8 +37,8 @@ end
 % Go to 90 degrees
 pot1stat = 0;
 pot2stat = 0;
-DriveMotor(0,.5)
-DriveMotor(1,.5)
+DriveMotor(0,0.5)
+DriveMotor(1,0.5)
 while(~pot1stat || ~pot2stat)
     if(a.analogRead(PIN_pot1)<625)
         DriveMotor(MOTOR1,0);
