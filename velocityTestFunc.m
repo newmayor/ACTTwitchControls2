@@ -46,11 +46,12 @@ end
 DriveMotor(MOTOR2, 0);
 
 
-timeValues = zeros(size(11,4));
+timeValues = zeros(size(10,11));
 % Beginning of the test loop
-for duty = 0:0.1:1
+for duty = 0.1:0.1:1
     i = 0;
     
+    timeValues(i,1) = duty;
     
     % Joint 1: Forward Direction
     tic
@@ -61,7 +62,7 @@ for duty = 0:0.1:1
     DriveMotor(MOTOR1, 0);
     time = toc;
     fprintf('Joint 1 (forward motion) time elapsed: %d seconds using a %d duty cycle\n\n', time, duty)
-    timeValues(i,1) = time; % store time value
+    timeValues(i,2) = time; % store time value
     
     
     % Joint 2: Forward Direction
@@ -74,7 +75,7 @@ for duty = 0:0.1:1
     DriveMotor(MOTOR2, 0);
     time = toc;
     fprintf('Joint 2 (forward motion) time elapsed: %d seconds using a %d duty cycle\n\n', time, duty)
-    timeValues(i,2) = time; % store time value
+    timeValues(i,3) = time; % store time value
     
     
     % Joint 1: Reverse Direction
@@ -86,7 +87,7 @@ for duty = 0:0.1:1
     DriveMotor(MOTOR1, 0);
     time = toc;
     fprintf('Joint 1 (backward motion) time elapsed: %d seconds using a %d duty cycle\n\n', time, duty)
-    timeValues(i,3) = time; % store time value
+    timeValues(i,4) = time; % store time value
     
     
     % Joint 2: Reverse Direction
@@ -99,9 +100,25 @@ for duty = 0:0.1:1
     DriveMotor(MOTOR2, 0);
     time = toc;
     fprintf('Joint 2 (backward motion) time elapsed: %d seconds using a %d duty cycle\n\n', time, duty)
-    timeValues(i,4) = time; % store time value
+    timeValues(i,5) = time; % store time value
     
+    %Joint 1 average time to sweep through angular range
+    timeValues(i,6) = (timeValues(i,2)+timeValues(i,4))/2; 
+    %Joint 2 average time to sweep through angular range
+    timeValues(i,7) = (timeValues(i,4)+timeValues(i,5))/2;
+    
+    %store angle range for Joint 1(Lower arm) and Joint 2(Upper arm)
+    timeValues(i,8) = pot1Max-pot1Min; %angle range for lower arm
+    timeValues(i,9) = pot2Max-pot2Min; %angle range for upper arm
+    
+    %angular velocity for Joint 1(Lower arm) and Joint 2(Upper arm)
+    timeValues(i,10) = timeValues(i,8)/timeValues(i,6); %lower arm
+    timeValues(i,11) = timeValues(i,9)/timeValues(i,7); %upper arm
     
     
     i = i+1;
 end
+
+
+%export timeValues array to Excel
+xlswrite('C:\Users\Numair\Documents\ACTTwitchControls2\velocityTest.xlsx', timeValues);
