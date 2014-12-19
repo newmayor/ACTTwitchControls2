@@ -4,6 +4,9 @@ global a MOTOR1 MOTOR2 MOTORMAX PIN_motor1_en PIN_motor1_pwm1 PIN_motor1_pwm2 PI
 
 delete(instrfind({'Port'},{'/dev/tty.usbmodem1411'}));
 port = '/dev/tty.usbmodem1411';
+%delete(instrfind({'Port'},{'/dev/tty.usbserial-A6008kUT'}));
+%port = '/dev/tty.usbserial-A6008kUT';
+
 
 MOTORMAX = 157;
 MOTOR1 = 0;
