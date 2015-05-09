@@ -1,6 +1,11 @@
 function CenterArm()
-
-global a MOTOR0 MOTOR1 MOTORMAX PIN_motor1_en PIN_motor1_pwm1 PIN_motor1_pwm2 PIN_motor2_en PIN_motor2_pwm1 PIN_motor2_pwm2 PIN_pot0 PIN_pot1 PIN_pot2 Pot0_Center Pot1_Center Pot0_RLimit Pot0_LLimit Pot1_RLimit Pot1_LLimit
+global a
+global L2 L3 theta1 theta4 x_i y_i x_f y_f 
+global er_ori curr_ori target_ori
+global theta2_min theta3_min theta2_max theta3_max s2_max s3_max
+global motor1 motor2 motor_max
+global pin_motor1_en pin_motor2_en pin_motor1_pwm1 pin_motor2_pwm1 pin_motor1_pwm2 pin_motor2_pwm2
+global pin_pot1 pin_pot2
 
 DriveMotor(0,0.5)
 DriveMotor(1,0.5)
@@ -10,31 +15,31 @@ DriveMotor(1,0.5)
 pot1stat = 0;
 pot2stat = 0;
 while(~pot1stat || ~pot2stat)
-    fprintf('PIN0: %d, PIN1: %d\n',a.analogRead(PIN_pot0),a.analogRead(PIN_pot1)); 
-    if(a.analogRead(PIN_pot0)<400)
+    fprintf('PIN0: %d, PIN1: %d\n',a.analogRead(pin_pot1),a.analogRead(pin_pot2)); 
+    if(a.analogRead(pin_pot1)<400)
         disp('moving motor 1');
-        %disp('PIN1: '); disp(a.analogRead(PIN_pot0));
-        DriveMotor(MOTOR0,0);
+        %disp('PIN1: '); disp(a.analogRead(pin_pot1));
+        DriveMotor(motor1,0);
         pot1stat=1;
     end
     if(a.analogRead(PIN_pot1)>800)
         disp('moving motor 2');
-        %disp('PIN2: '); disp(a.analogRead(PIN_pot1));
-        DriveMotor(MOTOR1,0);
+        %disp('PIN2: '); disp(a.analogRead(pin_pot2));
+        DriveMotor(motor2,0);
         pot2stat=1;
     end
 end
 pot1stat = 0;
 pot2stat = 0;
-DriveMotor(0,-0.5)
-DriveMotor(1,-0.5)
+DriveMotor(motor1,-0.5)
+DriveMotor(motor2,-0.5)
 while(~pot1stat || ~pot2stat)
-    if(a.analogRead(PIN_pot0)>300)
-        DriveMotor(MOTOR0,0);
+    if(a.analogRead(pin_pot1)>300)
+        DriveMotor(motor1,0);
         pot1stat=1;
     end
-    if(a.analogRead(PIN_pot1)<500)
-        DriveMotor(MOTOR1,0);
+    if(a.analogRead(pin_pot2)<500)
+        DriveMotor(motor2,0);
         pot2stat=1;
     end
 end
@@ -42,15 +47,15 @@ end
 % Go to 90 degrees
 pot1stat = 0;
 pot2stat = 0;
-DriveMotor(0,0.5)
-DriveMotor(1,0.5)
+DriveMotor(motor1,0.5)
+DriveMotor(motor2,0.5)
 while(~pot1stat || ~pot2stat)
-    if(a.analogRead(PIN_pot0)<400)
-        DriveMotor(MOTOR0,0);
+    if(a.analogRead(pin_pot1)<400)
+        DriveMotor(motor1,0);
         pot1stat=1;
     end
-    if(a.analogRead(PIN_pot1)>1000)
-        DriveMotor(MOTOR1,0);
+    if(a.analogRead(pin_pot2)>1000)
+        DriveMotor(motor2,0);
         pot2stat=1;
     end
 end
