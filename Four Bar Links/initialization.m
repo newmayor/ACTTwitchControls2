@@ -11,7 +11,8 @@ L2 = 9.0;   % Length of inner arm (inches)
 L3 = 14.75;  % Length of outer arm (inches)
 theta1 = 0; % Angle of the horizontal imaginary arm (radians)
 theta4 = pi/2; % Angle of the vertical imaginary arm (radians)
-x_i = 0; y_i = L2 + L3;
+x_i = 0; 
+y_i = L2 + L3;
 
 % Boundries of the arm
 theta2_min = 0; % from -x axis
@@ -24,8 +25,8 @@ s2_max = 0.8;  % Maximum speed of inner pot
 s3_max = 0.8;  % Maximum speed of outer pot
 
 % Starts the connection with arduino and initializes the pinouts
-initTwitch()
+connect(); % Formerly init_twitch
 
-% Reset to default position
-disp('Setting arm to the default position')
-CenterArm()
+% % Reset to default position
+% disp('Setting arm to the default position');
+% center_arm();

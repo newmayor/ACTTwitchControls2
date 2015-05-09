@@ -1,4 +1,4 @@
-function init_twitch()
+function connect()
 
 global a
 global L2 L3 theta1 theta4 x_i y_i x_f y_f 

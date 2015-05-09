@@ -8,11 +8,15 @@ global pin_pot1 pin_pot2
 
 initialization();
 
-er = 1;
-while er == 1
-    finalpos();
-    er = errorcheck();
-end
+% Test pot values
+disp(a.analogRead(pin_pot1));
+disp(a.analogRead(pin_pot2)); 
 
-orientation();
-% MOVE ARM TO X_F, Y_F, WITH DESIRED ORIENTATION.
+% er = 1;
+% while er == 1
+%     finalpos();
+%     er = errorcheck();
+% end
+% 
+% orientation();
+% % MOVE ARM TO X_F, Y_F, WITH DESIRED ORIENTATION.
