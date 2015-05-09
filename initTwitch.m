@@ -14,7 +14,7 @@ function initTwitch()
 global a MOTOR1 MOTOR2 MOTORMAX PIN_motor1_en PIN_motor1_pwm1 PIN_motor1_pwm2 PIN_motor2_en PIN_motor2_pwm1 PIN_motor2_pwm2 PIN_pot1 PIN_pot2
 
 delete(instrfind({'Port'},{'/dev/tty.usbmodem1411'}));
-port = '/dev/tty.usbmodem1411';
+port = 'COM3';
 
 MOTORMAX = 157;
 MOTOR1 = 0;

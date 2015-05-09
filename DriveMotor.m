@@ -8,10 +8,10 @@
 % signals are sent to the arduino to get the desired motor to move.
 
 function DriveMotor(motor,duty)
-    global a MOTOR1 MOTOR2 MOTORMAX PIN_motor1_en PIN_motor1_pwm1 PIN_motor1_pwm2 PIN_motor2_en PIN_motor2_pwm1 PIN_motor2_pwm2 PIN_pot1 PIN_pot2
+    global a MOTOR1 MOTOR2 MOTORMAX PIN_motor1_en PIN_motor1_pwm1 PIN_motor1_pwm2 PIN_motor2_en PIN_motor2_pwm1 PIN_motor2_pwm2 PIN_pot0 PIN_pot1
     global s1max s2max
 
-    
+   
 % Check input
 if(abs(duty)>1)
     % Init motors disabled
