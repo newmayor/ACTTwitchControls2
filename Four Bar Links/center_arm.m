@@ -8,8 +8,8 @@ global motor1 motor2 motor_max
 global pin_motor1_en pin_motor2_en pin_motor1_pwm1 pin_motor2_pwm1 pin_motor1_pwm2 pin_motor2_pwm2
 global pin_pot1 pin_pot2
 
-DriveMotor(motor1,0.5)
-DriveMotor(motor2,0.5)
+DriveMotor(motor1,0.5);
+DriveMotor(motor2,0.5);
 
 % Initializes the arm position at the start of the simulation
 % Sweep the range of motion
