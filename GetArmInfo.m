@@ -5,10 +5,10 @@ global r_f theta_f x_f y_f
 global a PIN_pot1 PIN_pot2
 global  L1 L2 
 
-theta1_min = 260;
-theta1_max = 990;
-theta2_min = 180;
-theta2_max = 890;
+theta0_min = 260;
+theta0_max = 990;
+theta1_min = 131;
+theta1_max = 878;
 
 % Output angles in radians
 theta1 = ((a.analogRead(PIN_pot1) - theta1_min) / (theta1_max - theta1_min) * 180) * pi / 180; % from -x axis
