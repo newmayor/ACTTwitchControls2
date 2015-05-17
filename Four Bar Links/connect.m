@@ -12,8 +12,8 @@ delete(instrfind({'Port'},{'/dev/tty.usbmodem1411'}));
 port = '/dev/tty.usbmodem1411';
 
 motor_max = 157;
-motor1 = 0;
-motor2 = 1;
+motor1 = 1;
+motor2 = 2;
 
 % Motor 0
 pin_motor1_en = 4;

@@ -8,9 +8,11 @@ global pin_pot1 pin_pot2
 
 initialization();
 
+[theta2,theta3] = arm_angles();
+
 % Test pot values
-disp(a.analogRead(pin_pot1));
-disp(a.analogRead(pin_pot2)); 
+disp(theta2);
+disp(theta3); 
 
 % er = 1;
 % while er == 1
