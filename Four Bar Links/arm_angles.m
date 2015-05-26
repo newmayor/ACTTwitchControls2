@@ -8,13 +8,8 @@ global motor1 motor2 motor_max
 global pin_motor1_en pin_motor2_en pin_motor1_pwm1 pin_motor2_pwm1 pin_motor1_pwm2 pin_motor2_pwm2
 global pin_pot1 pin_pot2
 
-theta2_min = 260;
-theta2_max = 990;
-theta3_min = 195;
-theta3_max = 929;
-
-theta2 = (a.analogRead(pin_pot1) - theta2_min)/(theta2_max - theta2_min) * 180;
-theta3 = (a.analogRead(pin_pot2) - theta3_min)/(theta3_max - theta3_min) * 180;
+theta2 = pot_degree(1);
+theta3 = pot_degree(2);
 
 theta2 = 90;
 

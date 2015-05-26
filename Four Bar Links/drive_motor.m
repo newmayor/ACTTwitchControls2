@@ -23,28 +23,19 @@ if(abs(duty) > 1)
 end
 
 if(motor == motor1)
-    disp('Motor = 1');
     if(duty < 0)
-        disp('Duty < 0.');
         a.analogWrite(pin_motor1_pwm1, 0);
         a.analogWrite(pin_motor1_pwm2, round(abs(duty) * motor_max));
     else
-        disp('Duty > 0.');
-        disp(round(abs(duty) * motor_max));
         a.analogWrite(pin_motor1_pwm1, round(abs(duty) * motor_max));
         a.analogWrite(pin_motor1_pwm2, 0);
     end
     
 elseif(motor == motor2)
-    disp('Motor = 2');
     if(duty < 0)
-        disp('Duty < 0.');
-        disp(round(abs(duty) * motor_max));
         a.analogWrite(pin_motor2_pwm1, 0);
         a.analogWrite(pin_motor2_pwm2, round(abs(duty) * motor_max));
     else
-        disp('Duty > 0.');
-        disp(round(abs(duty) * motor_max));
         a.analogWrite(pin_motor2_pwm1, round(abs(duty) * motor_max));
         a.analogWrite(pin_motor2_pwm2, 0);
     end
