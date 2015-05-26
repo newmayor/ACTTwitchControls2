@@ -15,10 +15,10 @@ x_i = 0;
 y_i = L2 + L3;
 
 % Boundries of the arm
-theta2_min = 260;
-theta2_max = 990;
+theta2_min = 170;
+theta2_max = 882;
 theta3_min = 195;
-theta3_max = 929;
+theta3_max = 927;
 
 % Maximum speeds to drive the motors
 s2_max = 0.8;  % Maximum speed of inner pot

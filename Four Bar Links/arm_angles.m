@@ -11,13 +11,19 @@ global pin_pot1 pin_pot2
 theta2 = pot_degree(1);
 theta3 = pot_degree(2);
 
-theta2 = 90;
+if theta2 ~= 90
+    theta = theta2 + theta3 - 90; 
+else
+    theta = theta3; 
+end
 
 x2 = L2 * cosd(theta2);
 y2 = L2 * sind(theta2);
 
-x3 = x2 + L3 * cosd(theta3);
-y3 = y2 + L3 * sind(theta3);
+x3 = x2 + L3 * cosd(theta);
+y3 = y2 + L3 * sind(theta);
+
+disp(x3); disp(y3); 
 
 lx = [0,x2,x3];
 ly = [0,y2,y3];
