@@ -29,4 +29,4 @@ connect(); % Formerly init_twitch
 
 % % Reset to default position
 % disp('Setting arm to the default position');
-% center_arm();
+center_arm();
