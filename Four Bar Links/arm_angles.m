@@ -23,13 +23,13 @@ y2 = L2 * sind(theta2);
 x3 = x2 + L3 * cosd(theta);
 y3 = y2 + L3 * sind(theta);
 
-disp(x3); disp(y3); 
+% disp(x3); disp(y3); 
 
 lx = [0,x2,x3];
 ly = [0,y2,y3];
 
-plot(x2,y2,'O',x3,y3,'O',0,0,'O',lx,ly);
-axis([-24 24 0 48]);
-axis('square');
-set(gcf,'color','w');
-grid on;
+% plot(x2,y2,'O',x3,y3,'O',0,0,'O',lx,ly);
+% axis([-24 24 0 48]);
+% axis('square');
+% set(gcf,'color','w');
+% grid on;

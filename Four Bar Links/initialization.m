@@ -17,7 +17,7 @@ y_i = L2 + L3;
 % Boundries of the arm
 theta2_min = 170;
 theta2_max = 882;
-theta3_min = 195;
+theta3_min = 195; % Changed from 195 to 194
 theta3_max = 927;
 
 % Maximum speeds to drive the motors

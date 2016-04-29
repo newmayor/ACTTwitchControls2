@@ -1,4 +1,4 @@
-% This functions returns the next sets of thetas of the arm in radians. 
+% This functions calculates the next sets of thetas of the arm in radians, then returns them in pot values. 
 
 function [theta2_1,theta3_1,theta2_2,theta3_2] = next_thetas(x,y)
 
@@ -12,8 +12,12 @@ global pin_pot1 pin_pot2
 
 % Set 1 thetas.
 theta3_1 = atan(y/x) + acos((x^2 + y^2 - L2^2 + L3^2)/(2 * L3 * sqrt(x^2 + y^2)));
+theta3_1 = (theta3_1/(2 * pi) * 1024); 
 theta2_1 = asin((y - L3 * sin(theta3_1))/L2);
+theta2_1 = (theta2_1/(2*pi) * 1024); 
 
 % Set 2 thetas.
 theta3_2 = atan(y/x) - acos((x^2 + y^2 - L2^2 + L3^2)/(2 * L3 * sqrt(x^2 + y^2)));
+theta3_2 = (theta3_2/(2*pi) * 1024); 
 theta2_2 = asin((y - L3 * sin(theta3_2))/L2);
+theta2_2 = (theta2_2/(2*pi) * 1024); 
