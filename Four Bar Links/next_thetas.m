@@ -13,11 +13,19 @@ global pin_pot1 pin_pot2
 % Set 1 thetas.
 theta3_1 = atan(y/x) + acos((x^2 + y^2 - L2^2 + L3^2)/(2 * L3 * sqrt(x^2 + y^2)));
 theta3_1 = (theta3_1/(2 * pi) * 1024); 
-theta2_1 = asin((y - L3 * sin(theta3_1))/L2);
-theta2_1 = (theta2_1/(2*pi) * 1024); 
+
+theta2_1_sin = asin((y - L3 * sin(theta3_1))/L2);
+theta2_1_sin = rad2deg(theta2_1_sin);
+
+theta2_1 = acos((x - L3 * cos(theta3_1))/L2);
+theta2_1 = (theta2_1/(2 * pi) * 1024); 
 
 % Set 2 thetas.
 theta3_2 = atan(y/x) - acos((x^2 + y^2 - L2^2 + L3^2)/(2 * L3 * sqrt(x^2 + y^2)));
 theta3_2 = (theta3_2/(2*pi) * 1024); 
-theta2_2 = asin((y - L3 * sin(theta3_2))/L2);
-theta2_2 = (theta2_2/(2*pi) * 1024); 
+
+theta2_2_sin = asin((y - L3 * sin(theta3_2))/L2);
+theta2_2_sin = rad2deg(theta2_2_sin); 
+
+theta2_2 = acos((x - L3 * cos(theta3_2))/L2);
+theta2_2 = (theta2_2/(2 * pi) * 1024); 

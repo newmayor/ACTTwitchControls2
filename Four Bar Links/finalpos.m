@@ -7,5 +7,7 @@ global pin_motor1_en pin_motor2_en pin_motor1_pwm1 pin_motor2_pwm1 pin_motor1_pw
 global pin_pot1 pin_pot2
 
 % Final xy-points
-x_f  = input('Input the target X coordinate: ');
-y_f = input('Input the target Y coordinate: ');
+% x_f  = input('Input the target X coordinate: ');
+% y_f = input('Input the target Y coordinate: ');
+
+x_f = 15; y_f = 15; 

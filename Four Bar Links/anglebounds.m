@@ -10,19 +10,21 @@ global pin_pot1 pin_pot2
 
 [theta2_1,theta3_1,theta2_2,theta3_2] = next_thetas(x_curr,y_curr);
 
-% disp(theta2_1); disp(theta3_1); disp(theta2_2); disp(theta3_2); 
+format long g;
 
 if ((theta2_1 >= theta2_min) && (theta2_1 <= theta2_max))
     er_1 = 0;
 else
     er_1 = 1;
     display('theta2_1'); 
+    display(theta2_1); 
 end 
 if (theta3_1 >= theta3_min) && (theta3_1 <= theta3_max)
     er_1 = 0;
 else
     er_1 = 1;
     display('theta3_1');
+    display(theta3_1);
 end 
 
 if (theta2_2 >= theta2_min) && (theta2_2 <= theta2_max)
@@ -30,10 +32,12 @@ if (theta2_2 >= theta2_min) && (theta2_2 <= theta2_max)
 else
     er_2 = 1;
     display('theta2_2');
+    display(theta2_2);
 end 
 if (theta3_2 >= theta3_min) && (theta3_2 <= theta3_max)
     er_2 = 0;
 else
     er_2 = 1;
     display('theta3_2');
+    display(theta3_2);
 end 

@@ -12,8 +12,12 @@ if (x_curr == x_i) && (y_curr == y_i)
     x = ep; 
     dx = x_f - x_i; dy = y_f - y_i; 
     y = y_i + (x - x_i) * dy/dx; 
+    
+    % display(x); display(y); 
 else
     x = x_curr + ep; 
     dx = x_f - x_curr; dy = y_f - y_curr; 
     y = y_curr + (x - x_curr) * dy/dx;
+    
+    % display(x); display(y); 
 end
